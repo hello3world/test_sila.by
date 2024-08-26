@@ -11,10 +11,12 @@ def driver():
     driver = webdriver.Chrome()
     yield driver
     driver.quit()
+
 def test_order_product(driver):
-    print("Test_order_product was srarted")
+    print("Test_order_product was started")
     base_page = BasePage(driver)
     base_page.open_page()
+    base_page.accept_cookies()
     home_page = HomePage(driver)
     home_page.open_search_page()
     print("Search page is opened")
