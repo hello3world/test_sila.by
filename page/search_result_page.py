@@ -14,15 +14,6 @@ class SearchResultPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-    def wait_and_find_element(self, locator):
-        try:
-            return WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((By.XPATH, locator))
-            )
-        except TimeoutException:
-            print(f"Element with locator {locator} was not visible within 10 "
-                  f"seconds.")
-
     def scroll_element_up(self, element, pixels=100):
         # Получаем текущее положение элемента
         current_position = self.driver.execute_script("""
@@ -105,5 +96,7 @@ class SearchResultPage(BasePage):
         self.press_type()
         self.choose_type_playing()
         self.press_result_button()
+
+    def open_product_cart(self):
         self.press_notebook()
 

@@ -31,6 +31,15 @@ class BasePage:
         except Exception as e:
             print("Cookies acceptance failed: ", e)
 
+    def wait_and_find_element(self, locator):
+        try:
+            return WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, locator))
+            )
+        except TimeoutException:
+            print(f"Element with locator {locator} was not visible within 10 "
+                  f"seconds.")
+
     def click_element_with_exceptions(self, locator):
         max_retries = 3  # количество попыток для обработки StaleElementReferenceException
         attempt = 0
