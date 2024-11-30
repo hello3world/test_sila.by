@@ -27,11 +27,11 @@ class SearchResultPage(BasePage):
         """, current_position['top'], pixels)
 
     # Locators
-    producer = "//a[text()='ASUS']"
-    type_prod = "//u[text()='Тип']"
-    type_playing = "//strong[text()='игровой']"
-    result_button = "//input[@value='Показать']"
-    notebook = "(//div[@class='prew_params'])[1]"
+    producer = (By.XPATH, "//a[text()='ASUS']")
+    type_prod = (By.XPATH, "//u[text()='Тип']")
+    type_playing = (By.XPATH, "//strong[text()='игровой']")
+    result_button = (By.XPATH, "//input[@value='Показать']")
+    notebook = (By.XPATH, "(//div[@class='prew_params'])[1]")
 
     # Getters
     def get_producer(self):
