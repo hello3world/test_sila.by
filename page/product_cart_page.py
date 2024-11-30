@@ -4,22 +4,23 @@ from base_page.base_page import BasePage
 
 
 class ProductCartPage(BasePage):
-    def __init__(self, driver):
-        super().__init__(driver)
+    def __init__(self, driver, url=None):
+        super().__init__(driver, url)
 
     # Locators
-    BUTTON_ADD_TO_CART = "//div[@title='В КОРЗИНУ!']"
-    POPUP_ORDER = "//div[@class='btn_zak_popup']"
+    BUTTON_ADD_TO_CART = (By.XPATH, "//div[@title='В КОРЗИНУ!']")
+    BUTTON_POPUP_ORDER = (By.XPATH, "//div[@class='btn_zak_popup']")
 
     # Getters
     def get_button_add_to_cart(self):
         return self.wait_and_find_element(self.BUTTON_ADD_TO_CART)
 
     def get_button_to_place_an_order(self):
-        return self.wait_and_find_element(self.POPUP_ORDER)
+        return self.wait_and_find_element(self.BUTTON_POPUP_ORDER)
 
     # Actions
     def click_button_add_to_cart(self):
+        print(self.get_button_add_to_cart())
         button_add_to_cart = self.get_button_add_to_cart()
         button_add_to_cart.click()
 

@@ -19,7 +19,7 @@ class BasePage:
         """Открываем страницу по указанному URL"""
         self.driver.get(self.url)
 
-    def accept_cookies_for_starting_page(self, timeout=10):
+    def accept_cookies_for_starting_page(self, timeout=5):
         """Ожидаем и нажимаем кнопку cookies, если она существует"""
         try:
             WebDriverWait(self.driver, timeout).until(
@@ -32,13 +32,21 @@ class BasePage:
             print("Cookies acceptance failed: ", e)
 
     def wait_and_find_element(self, locator):
-        try:
-            return WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((By.XPATH, locator))
-            )
-        except TimeoutException:
-            print(f"Element with locator {locator} was not visible within 10 "
-                  f"seconds.")
+        max_retries = 3  # количество попыток для обработки StaleElementReferenceException
+        attempt = 0
+        while attempt < max_retries:
+            try:
+                return WebDriverWait(self.driver, 10).until(
+                    EC.visibility_of_element_located(locator)
+                )
+            except StaleElementReferenceException:
+                attempt += 1
+                print(
+                    f"StaleElementReferenceException encountered. Retrying... (attempt {attempt}/{max_retries})")
+            except TimeoutException:
+                print(
+                    f"Element with locator {locator} was not visible within 10 "
+                    f"seconds.")
 
     def click_element_with_exceptions(self, locator):
         max_retries = 3  # количество попыток для обработки StaleElementReferenceException

@@ -3,9 +3,9 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-# from faker import Faker
-#
-# fake = Faker()
+from faker import Faker
+
+fake = Faker()
 
 # Фикстура для инициализации и завершения драйвера
 @pytest.fixture
@@ -19,6 +19,6 @@ def driver():
 
 # @pytest.fixture
 # def user_data():
-#     username = fake.user_name()
-#     password = fake.password()
-#     return {"username": username, "password": password}
+#     first_name = fake.first_name()
+#     second_name = fake.name()
+#     return {"first_name": first_name, "second_name": second_name}
