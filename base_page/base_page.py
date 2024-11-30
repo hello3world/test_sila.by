@@ -14,7 +14,7 @@ class BasePage:
     # Locators
     button_cookies = (By.XPATH, "//button[@class='cookies_save']")  # Определяем как кортеж
 
-    # Methods
+    # Method
     def open_page(self):
         """Открываем страницу по указанному URL"""
         self.driver.get(self.url)
