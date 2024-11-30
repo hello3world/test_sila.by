@@ -9,7 +9,7 @@ from page.home_page import HomePage
 from page.making_order_page import MakingOrderPage
 from page.product_cart_page import ProductCartPage
 from page.search_result_page import SearchResultPage
-
+# c
 @pytest.mark.smoke
 def test_quest_can_to_order_product(driver):
     print("**test_quest_can_to_order_product** was started")
